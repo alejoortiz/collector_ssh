@@ -21,14 +21,9 @@ class Collector:
     collection_devices_output = "/app/output/collection_devices.json"
     env_var_file = "/app/env/env_var.json"
 
-    def __init__(self,root_dir,src_dir,templates_dir,output_dir,devices_file,commands_file,num_thr,sh_th):
-        self.root_dir = root_dir
-        self.src_dir= src_dir
-        self.templates_dir = templates_dir
-        self.output_dir = output_dir
+    def __init__(self,devices_file,commands_file,num_thr,sh_th):
         self.devices_file = devices_file
         self.commands_file = commands_file
-
         self.num_thr = num_thr
         self.sh_th = sh_th
         self.user = ""
@@ -98,7 +93,7 @@ class Collector:
         for index_c in range(0,len(commands_list)):
             new_command = command.copy()
             new_command["command"]= commands_list[index_c]
-            new_command["expect"]= r'ME205-PEG-01#'
+            new_command["expect"]= r'BA081-PEG-02#'
             new_command["save"]= True
             if self.sh_th == True:
                 new_command["delay_factor"]=10
