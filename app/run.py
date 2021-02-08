@@ -11,6 +11,7 @@ import os
 import sys
 from datetime import datetime
 from collector import Collector
+from ssh import SSH
 
 def main():
     # Input files and variables
@@ -31,9 +32,12 @@ def main():
 
     # Format commands and devices on dictionary for outputs
     new_collector = Collector(root_dir,src_dir,templates_dir,output_dir,devices_file,commands_file,num_thr,True)
-    new_collector.format_devices()
+    new_collector.get_env()
+    devices_commands = new_collector.format_devices()
+    new_collector.output_json()
     # Send SSH sessions for outputs
-    new_collector.get_devices_commands()
+    new_ssh = SSH(devices_commands,10,3)
+    new_ssh.run()
     print("Process Collect Files Done: " + str(datetime.now() - start_time))
 
 if __name__ == '__main__':

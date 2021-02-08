@@ -129,3 +129,5 @@ dmypy.json
 
 # keys files
 /app/keys/
+/python/keys/
+app/output/collection_devices.json
