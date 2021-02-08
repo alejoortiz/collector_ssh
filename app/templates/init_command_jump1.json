@@ -1,0 +1,29 @@
+{
+    "0": {
+        "command": "",
+        "expect": "assword\\:",
+        "verify": false,
+        "save": false,
+        "password": false,
+        "user": true,
+        "delay_factor": 1
+       },
+    "1": {
+        "command": "",
+        "expect": "#",
+        "verify": false,
+        "save": false,
+        "password": true,
+        "user": false,
+        "delay_factor": 1
+       },
+    "2": {
+        "command": "terminal length 0",
+        "expect": "#",
+        "verify": false,
+        "save": false,
+        "password": false,
+        "user": false,
+        "delay_factor": 1
+       }
+}

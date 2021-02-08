@@ -1,0 +1,10 @@
+version: '3'
+services: 
+    python:
+        build: ./python
+        container_name: test_ssh
+        volumes:
+            - ./app/:/app/
+        restart: always
+        tty: true
+        image: test_ssh:latest

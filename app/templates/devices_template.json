@@ -1,0 +1,13 @@
+{
+    "device_type": "",
+    "ip": "",
+    "username": "",
+    "password": "",
+    "verbose": false,
+    "jump1": false,
+    "ip_jump1": "",
+    "jump2": false,
+    "ip_jump2": "",
+    "file": "",
+    "commands": {}
+}
