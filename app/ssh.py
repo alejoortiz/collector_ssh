@@ -132,18 +132,18 @@ class SSH:
                 self.write_trace(msg7)
                 return
 
-    def fill_queue(self):
+    def create_workers(self,q):
+        for i in range(self.min_threads):
+            thread_name = f'Thread-{i}'
+            worker = Thread(name=thread_name,target=self.send_commands,args=(q,))
+            worker.start()
+        q.join()
+
+    def run(self):
         device_id=[]
         device_queue = Queue(maxsize=0)
         for k, v in self.devices_commands.items():
             device_id.append(k)
             device_queue.put(v)
         self.min_threads = min(self.max_threads,len(device_id))
-        self.run(q=device_queue)
-
-    def run(self,q):
-        for i in range(self.min_threads):
-            thread_name = f'Thread-{i}'
-            worker = Thread(name=thread_name,target=self.send_commands,args=(q,))
-            worker.start()
-        q.join()
+        self.create_workers(q=device_queue)
