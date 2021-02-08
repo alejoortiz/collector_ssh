@@ -22,16 +22,15 @@ class SSH:
 
     PRINT_LOCK = Lock()
 
-    def __init__(self,devices_commands,max_threads,root_dir):
+    def __init__(self,devices_commands,max_threads):
         self.devices_commands = devices_commands
         self.max_threads = max_threads
         self.min_threads = 1
-        self.root_dir = root_dir
     
     def write_output(self,output,name_file):
         now = datetime.now()
         current_time = str(now.strftime('%Y-%m-%d_%H%M%S'))
-        output_path = f"{self.root_dir}/output/{name_file}_{current_time}.log"
+        output_path = f"/app/output/{name_file}_{current_time}.log"
         with open(output_path,'w') as file:
             file.write(output)
 
@@ -39,7 +38,7 @@ class SSH:
         with self.PRINT_LOCK:
             now = datetime.now()
             current_time = str(now.strftime('%Y-%m-%d %H:%M:%S'))
-            output_path = f"{self.root_dir}/traces/ssh_trace.log"
+            output_path = f"/app/traces/ssh_trace.log"
             trace = f"{current_time}: SSH: {msg} \n"
             if os.path.exists(output_path):
                 with open(output_path,'a') as file:

@@ -67,7 +67,7 @@ class Collector:
             json.dump(self.collection_devices,file_out,indent=1)
 
     def get_devices_commands(self):
-        new_ssh = SSH(self.collection_devices,self.num_thr,self.root_dir)
+        new_ssh = SSH(self.collection_devices,self.num_thr)
         new_ssh.run()
 
     def get_env(self):
