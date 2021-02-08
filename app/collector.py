@@ -17,8 +17,7 @@ class Collector:
 
     device_template = "/app/templates/devices_template.json"
     command_template = "/app/templates/command_template.json"
-    init_command_jump1 = "/app/templates/init_command_jump1.json"
-    init_command_jump2 = "/app/templates/init_command_jump2.json"
+    init_command_ssh = "/app/templates/init_command_ssh.json"
     collection_devices_output = "/app/output/collection_devices.json"
     env_var_file = "/app/env/env_var.json"
 
@@ -38,7 +37,7 @@ class Collector:
         self.jump_1_ip = ""
         self.jump_1_user = ""
         self.jump_1_pass = ""
-        self.jump_1_key_bol = ""
+        self.jump_1_key_bol = True
         self.jump_1_key_file = ""
         self.jump_1_key_file_pass = ""
         self.jump_2_bol = False
@@ -91,7 +90,7 @@ class Collector:
         exit_command["expect"]= r'$'
         index = 5
         num_commands = len(commands_list)
-        collection_commands = self.get_json(self.init_command_jump2)
+        collection_commands = self.get_json(self.init_command_ssh)
         collection_commands["0"]["command"]="ssh -l {} {}".format(self.jump_2_user,self.jump_2_ip)
         collection_commands["1"]["command"]=self.jump_2_pass
         collection_commands["2"]["command"]="ssh -l {} {}".format(self.user,device_ip)
