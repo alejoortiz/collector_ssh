@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 ################################ MODULE INFO ###########################################
-#   Version 1.0                                                                        #
+#   Version 2.0                                                                        #
 #   Title: ssh.py                                                                      #
 #   Author: Alejandro Ortiz Vega                                                       #
 #   Contact details: alejorti@cisco.com                                                #
@@ -60,27 +60,17 @@ class SSH:
             connection["ip"] =  device_details["ip"]
             connection["username"] =  device_details["username"]
             connection["password"] =  device_details["password"]
+            connection["use_keys"] = device_details["use_keys"]
+            connection["key_file"] = device_details["key_file"]
+            connection["passphrase"] = device_details["passphrase"]
             connection["verbose"] =  device_details["verbose"]
             file_name = device_details["file"]
-            jump1= device_details["jump1"]
             ip_jump1= device_details["ip_jump1"]
-            jump2= device_details["jump2"]
             ip_jump2= device_details["ip_jump2"]
-            if jump1==False and jump2 == False:
-                msg0 = f"{thread_name}: IP {file_name} Connecting"
-                msg5 = f"{thread_name}: IP {file_name} Session timeout"
-                msg6 = f"{thread_name}: IP {file_name} Authentication error"
-                msg7 = f"{thread_name}: IP {file_name} Closing"
-            elif jump1==True and jump2 == False:
-                msg0 = f"{thread_name}: Jump={ip_jump1} IP={file_name} Connecting"
-                msg5 = f"{thread_name}: Jump={ip_jump1} IP={file_name} Session timeout"
-                msg6 = f"{thread_name}: Jump={ip_jump1} IP={file_name} Authentication error"
-                msg7 = f"{thread_name}: Jump={ip_jump1} IP={file_name} Closing"
-            elif jump1==True and jump2 == True:
-                msg0 = f"{thread_name}: Jump1={ip_jump1} Jump2={ip_jump2} IP={file_name} Connecting"
-                msg5 = f"{thread_name}: Jump1={ip_jump1} Jump2={ip_jump2} IP={file_name} Session timeout"
-                msg6 = f"{thread_name}: Jump1={ip_jump1} Jump2={ip_jump2} IP={file_name} Authentication error"
-                msg7 = f"{thread_name}: Jump1={ip_jump1} Jump2={ip_jump2} IP {file_name} Closing"
+            msg0 = f"{thread_name}: Jump1={ip_jump1} Jump2={ip_jump2} IP={file_name} Connecting"
+            msg5 = f"{thread_name}: Jump1={ip_jump1} Jump2={ip_jump2} IP={file_name} Session timeout"
+            msg6 = f"{thread_name}: Jump1={ip_jump1} Jump2={ip_jump2} IP={file_name} Authentication error"
+            msg7 = f"{thread_name}: Jump1={ip_jump1} Jump2={ip_jump2} IP {file_name} Closing"
             retry_error = 0
             while retry_error <self.retry:
                 try:
@@ -88,19 +78,9 @@ class SSH:
                     with ConnectHandler(**connection) as net_connect:
                         for key,dic_command in commands.items():
                             command = dic_command["command"]
-                            if jump1==False and jump2 == False:
-                                msg1 = f"{thread_name}: IP={file_name} Command[{key}] {command}"
-                                msg2 = f"{thread_name}: IP={file_name} File={command}"
-                            elif jump1==True and jump2 == False:
-                                msg1 = f"{thread_name}: Jump={ip_jump1} IP={file_name} Command[{key}] {command}"
-                                msg2 = f"{thread_name}: Jump={ip_jump1} IP={file_name} File={command}"
-                                msg3 = f"{thread_name}: Jump={ip_jump1} IP={file_name} Command[{key}] password: ******"
-                                msg4 = f"{thread_name}: Jump={ip_jump1} IP={file_name} Command[{key}] {command}"
-                            elif jump1==True and jump2 == True:
-                                msg1 = f"{thread_name}: Jump1={ip_jump1} Jump2={ip_jump2} IP={file_name} Command[{key}] {command}"
-                                msg2 = f"{thread_name}: Jump1={ip_jump1} Jump2={ip_jump2} IP={file_name} File={command}"
-                                msg3 = f"{thread_name}: Jump1={ip_jump1} Jump2={ip_jump2} IP={file_name} Command[{key}] password: ******"
-                                msg4 = f"{thread_name}: Jump1={ip_jump1} Jump2={ip_jump2} IP={file_name} Command[{key}] {command}"
+                            msg1 = f"{thread_name}: Jump1={ip_jump1} Jump2={ip_jump2} IP={file_name} Command[{key}] {command}"
+                            msg2 = f"{thread_name}: Jump1={ip_jump1} Jump2={ip_jump2} IP={file_name} File={command}"
+                            msg3 = f"{thread_name}: Jump1={ip_jump1} Jump2={ip_jump2} IP={file_name} Command[{key}] Password: ******"
                             if dic_command["save"]:
                                 self.write_trace(msg1)
                                 output = ""
@@ -112,7 +92,7 @@ class SSH:
                                 if dic_command["password"]:
                                     self.write_trace(msg3)
                                 else:
-                                    self.write_trace(msg4)
+                                    self.write_trace(msg1)
                                 net_connect.send_command(command,cmd_verify=dic_command["verify"],expect_string=dic_command["expect"],delay_factor=dic_command["delay_factor"])
                         retry_error = self.retry+1
                 except NetMikoTimeoutException:
