@@ -126,3 +126,6 @@ dmypy.json
 
 # MAC OS files
 *.DS_Store
+
+# keys files
+/app/keys/

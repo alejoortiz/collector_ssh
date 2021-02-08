@@ -22,11 +22,12 @@ class SSH:
 
     PRINT_LOCK = Lock()
 
-    def __init__(self,devices_commands,max_threads):
+    def __init__(self,devices_commands,max_threads,retry):
         self.devices_commands = devices_commands
         self.max_threads = max_threads
         self.min_threads = 1
-    
+        self.retry = retry
+
     def write_output(self,output,name_file):
         now = datetime.now()
         current_time = str(now.strftime('%Y-%m-%d_%H%M%S'))
@@ -81,7 +82,7 @@ class SSH:
                 msg6 = f"{thread_name}: Jump1={ip_jump1} Jump2={ip_jump2} IP={file_name} Authentication error"
                 msg7 = f"{thread_name}: Jump1={ip_jump1} Jump2={ip_jump2} IP {file_name} Closing"
             retry_error = 0
-            while retry_error <2:
+            while retry_error <self.retry:
                 try:
                     self.write_trace(msg0)
                     with ConnectHandler(**connection) as net_connect:
@@ -113,7 +114,7 @@ class SSH:
                                 else:
                                     self.write_trace(msg4)
                                 net_connect.send_command(command,cmd_verify=dic_command["verify"],expect_string=dic_command["expect"],delay_factor=dic_command["delay_factor"])
-                        retry_error = 2
+                        retry_error = self.retry+1
                 except NetMikoTimeoutException:
                     self.write_trace(msg5)
                     retry_error += 1
