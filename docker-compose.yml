@@ -2,7 +2,7 @@ version: '3'
 services: 
     python:
         build: ./python
-        container_name: test_ssh
+        container_name: collector_ssh
         volumes:
             - ./app/:/app/
         restart: always
