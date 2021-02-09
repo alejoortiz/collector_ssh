@@ -10,6 +10,7 @@
 import sys
 import os
 import json
+import csv
 from datetime import datetime
 from collections import OrderedDict
 
@@ -54,6 +55,12 @@ class Collector:
             for entry in list_file:
                 new_list.append(entry.strip())
             return new_list
+
+    @staticmethod
+    def get_csv(file):
+        with open(file,newline='') as csvfile:
+            reader = csv.DictReader(csvfile)
+            return reader
     
     def output_json(self):
         file_name = self.collection_devices_output

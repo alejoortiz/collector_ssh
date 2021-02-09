@@ -1,3 +1,5 @@
 id,hostname,ip,protocol,delay_factor,command
 1,ME205-PEG-01,10.2.189.73,ssh,10,show log start today | exclude "SSHD|rsvp|devc-vty|IP-DHCPD-4-INVALID_DEFAULT_GATEWAY"
 2,ME205-PEG-01,10.2.189.73,ssh,10,show dhcp ipv6 trace
+3,ME205-PEG-02,10.2.189.101,ssh,10,show log start today | exclude "SSHD|rsvp|devc-vty|IP-DHCPD-4-INVALID_DEFAULT_GATEWAY"
+4,ME205-PEG-02,10.2.189.101,ssh,10,show dhcp ipv6 trace
