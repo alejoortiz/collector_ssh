@@ -1,2 +1,0 @@
-show log start today | exclude "SSHD|rsvp|devc-vty|IP-DHCPD-4-INVALID_DEFAULT_GATEWAY"
-show dhcp ipv6 trace
