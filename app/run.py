@@ -16,21 +16,19 @@ from ssh import SSH
 def main():
     # Input files and variables
     start_time = datetime.now()
-    # Devices file
-    devices_file = "/app/src/devices.txt"
-    # Command file
-    commands_file = "/app/src/commands.txt"
-    # Number of threads
-    num_thr = 10
-    # Number of rety
-    num_retry = 3
 
     # Format commands and devices on dictionary for outputs
-    new_collector = Collector(devices_file,commands_file,num_thr,True)
+    new_collector = Collector()
     new_collector.get_env()
     devices_commands = new_collector.format_devices()
+    new_collector.output_json()
+
     # Send SSH sessions for outputs
-    new_ssh = SSH(devices_commands,num_thr,num_retry)
+    # Number of threads
+    number_threads = 10
+    # Number of retry
+    number_retry = 3
+    new_ssh = SSH(devices_commands,number_threads,number_retry)
     new_ssh.run()
     print("Process Collect Files Done: " + str(datetime.now() - start_time))
 

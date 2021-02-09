@@ -16,17 +16,15 @@ from collections import OrderedDict
 
 class Collector:
 
+    devices_file = "/app/src/devices_commands.csv"
     device_template = "/app/templates/devices_template.json"
     command_template = "/app/templates/command_template.json"
     init_command_ssh = "/app/templates/init_command_ssh.json"
     collection_devices_output = "/app/output/collection_devices.json"
     env_var_file = "/app/env/env_var.json"
 
-    def __init__(self,devices_file,commands_file,num_thr,sh_th):
-        self.devices_file = devices_file
-        self.commands_file = commands_file
-        self.num_thr = num_thr
-        self.sh_th = sh_th
+    def __init__(self):
+        self.sh_th = False
         self.user = ""
         self.password = ""
         self.jump_1_bol = False
@@ -55,12 +53,6 @@ class Collector:
             for entry in list_file:
                 new_list.append(entry.strip())
             return new_list
-
-    @staticmethod
-    def get_csv(file):
-        with open(file,newline='') as csvfile:
-            reader = csv.DictReader(csvfile)
-            return reader
     
     def output_json(self):
         file_name = self.collection_devices_output
@@ -83,52 +75,65 @@ class Collector:
         self.jump_2_user = env_var["USER_JUMP2"]
         self.jump_2_pass = env_var["PASS_JUMP2"]
 
-    def format_commands(self,dev_num,device_ip):
+    def format_commands(self,device_id,row):
         collection_commands = {}
-        command = self.get_json(self.command_template)
-        commands_list = self.get_list(self.commands_file)
-        exit_command = command.copy()
-        exit_command["command"]= "exit"
-        exit_command["expect"]= r'$'
-        index = 5
-        num_commands = len(commands_list)
         collection_commands = self.get_json(self.init_command_ssh)
         collection_commands["0"]["command"]="ssh -l {} {}".format(self.jump_2_user,self.jump_2_ip)
         collection_commands["1"]["command"]=self.jump_2_pass
-        collection_commands["2"]["command"]="ssh -l {} {}".format(self.user,device_ip)
+        collection_commands["2"]["command"]="ssh -l {} {}".format(self.user,row["ip"])
         collection_commands["3"]["command"]=self.password
-        for index_c in range(0,len(commands_list)):
+        command = self.get_json(self.command_template)
+        if len(self.collection_devices[device_id]["commands"]) == 0:
+            index = 5
             new_command = command.copy()
-            new_command["command"]= commands_list[index_c]
-            new_command["expect"]= r'BA081-PEG-02#'
+            new_command["command"]= row["command"]
+            new_command["expect"]= row["hostname"]
+            new_command["delay_factor"]= int(row["delay_factor"])
             new_command["save"]= True
-            if self.sh_th == True:
-                new_command["delay_factor"]=10
-            collection_commands[str(index+index_c)]=new_command
-        if self.jump_1_bol == True:
-            collection_commands[str(index+num_commands)]=exit_command
-        if self.jump_2_bol ==True:
-            collection_commands[str(index+num_commands+1)]=exit_command
+            collection_commands["5"]=new_command
+        else:
+            old_commands = self.collection_devices[device_id]["commands"]
+            index = len(old_commands.keys())-2
+            for i in range(5,index):
+                collection_commands[str(i)] = self.collection_devices[device_id]["commands"][str(i)]
+            new_command = command.copy()
+            new_command["command"]= row["command"]
+            new_command["expect"]= row["hostname"]+"#"
+            new_command["delay_factor"]= int(row["delay_factor"])
+            new_command["save"]= True
+            collection_commands[index]=new_command
+        exit_command = command.copy()
+        exit_command["command"]= "exit"
+        exit_command["expect"]= r'$'
+        collection_commands[str(index+1)]=exit_command
+        collection_commands[str(index+2)]=exit_command
         return collection_commands
 
     def format_devices(self):
-        device = self.get_json(self.device_template)
-        device_list = self.get_list(self.devices_file)
-        for index_r in range(0,len(device_list)):
-            new_commands = self.format_commands(int(index_r),device_list[index_r])
-            new_device = device.copy()
-            new_device["device_type"] = "linux"
-            new_device["ip"] = self.jump_1_ip
-            new_device["username"] = self.jump_1_user
-            new_device["password"] = self.jump_1_pass
-            new_device["use_keys"] = self.jump_1_key_bol
-            new_device["key_file"] = self.jump_1_key_file
-            new_device["passphrase"] = self.jump_1_key_file_pass
-            new_device["jump1"] = True
-            new_device["ip_jump1"] = self.jump_1_ip
-            new_device["jump2"] = True
-            new_device["ip_jump2"] = self.jump_2_ip
-            new_device["file"] = device_list[index_r]
-            new_device["commands"] = new_commands
-            self.collection_devices[str(index_r)]=new_device
-        return self.collection_devices
+        device_format_json = self.get_json(self.device_template)
+        with open(self.devices_file,newline='') as csvfile:
+            devices_csv = csv.DictReader(csvfile)
+            index_r = 0
+            check_ip = {}
+            for row in devices_csv:
+                if row["ip"] not in check_ip.keys():
+                    check_ip[row["ip"]] = index_r
+                    new_device = device_format_json.copy()
+                    new_device["device_type"] = "linux"
+                    new_device["ip"] = self.jump_1_ip
+                    new_device["username"] = self.jump_1_user
+                    new_device["password"] = self.jump_1_pass
+                    new_device["use_keys"] = self.jump_1_key_bol
+                    new_device["key_file"] = self.jump_1_key_file
+                    new_device["passphrase"] = self.jump_1_key_file_pass
+                    new_device["jump1"] = True
+                    new_device["ip_jump1"] = self.jump_1_ip
+                    new_device["jump2"] = True
+                    new_device["ip_jump2"] = self.jump_2_ip
+                    new_device["file"] = row["ip"]
+                    self.collection_devices[str(index_r)]=new_device
+                    index_r += 1
+                device_id = str(check_ip[row["ip"]])
+                new_commands = self.format_commands(device_id,row)
+                self.collection_devices[device_id]["commands"] = new_commands
+            return self.collection_devices
