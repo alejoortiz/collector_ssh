@@ -16,15 +16,14 @@ from collections import OrderedDict
 
 class Collector:
 
-    devices_file = "/app/src/devices_commands.csv"
     device_template = "/app/templates/devices_template.json"
     command_template = "/app/templates/command_template.json"
     init_command_ssh = "/app/templates/init_command_ssh.json"
     collection_devices_output = "/app/output/collection_devices.json"
     env_var_file = "/app/env/env_var.json"
 
-    def __init__(self):
-        self.sh_th = False
+    def __init__(self,devices_file):
+        self.devices_file = devices_file
         self.user = ""
         self.password = ""
         self.jump_1_bol = False

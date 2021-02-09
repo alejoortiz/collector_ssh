@@ -17,8 +17,11 @@ def main():
     # Input files and variables
     start_time = datetime.now()
 
+    # Devices file and commands source
+    devices_file = "/app/src/devices_commands.csv"
+
     # Format commands and devices on dictionary for outputs
-    new_collector = Collector()
+    new_collector = Collector(devices_file)
     new_collector.get_env()
     devices_commands = new_collector.format_devices()
     new_collector.output_json()
