@@ -7,4 +7,4 @@ services:
             - ./app/:/app/
         restart: always
         tty: true
-        image: test_ssh:latest
+        image: collector_ssh:latest
