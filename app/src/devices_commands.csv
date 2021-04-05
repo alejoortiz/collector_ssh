@@ -1,5 +1,205 @@
 id,hostname,ip,protocol,delay_factor,command
-1,ME205-PEG-01,10.2.189.73,ssh,10,show log start today | exclude "SSHD|rsvp|devc-vty|IP-DHCPD-4-INVALID_DEFAULT_GATEWAY"
-2,ME205-PEG-01,10.2.189.73,ssh,10,show dhcp ipv6 trace
-3,ME205-PEG-02,10.2.189.101,ssh,10,show log start today | exclude "SSHD|rsvp|devc-vty|IP-DHCPD-4-INVALID_DEFAULT_GATEWAY"
-4,ME205-PEG-02,10.2.189.101,ssh,10,show dhcp ipv6 trace
+1,A9KDORADO,10.10.66.109,ssh,10,show policy-map targets summary
+2,A9KDORADO,10.10.66.109,ssh,10,show l2vpn xconnect brief
+3,A9KARANDA,10.10.66.13,ssh,10,show policy-map targets summary
+4,A9KARANDA,10.10.66.13,ssh,10,show l2vpn xconnect brief
+5,A9KCALLE94,10.10.66.14,ssh,10,show policy-map targets summary
+6,A9KCALLE94,10.10.66.14,ssh,10,show l2vpn xconnect brief
+7,A9KTEUSAQUILLO,10.10.66.15,ssh,10,show policy-map targets summary
+8,A9KTEUSAQUILLO,10.10.66.15,ssh,10,show l2vpn xconnect brief
+9,A9KCHICOANTIGUO,10.10.66.16,ssh,10,show policy-map targets summary
+10,A9KCHICOANTIGUO,10.10.66.16,ssh,10,show l2vpn xconnect brief
+11,A9KBUCARAMANGA,10.10.66.236,ssh,10,show policy-map targets summary
+12,A9KBUCARAMANGA,10.10.66.236,ssh,10,show l2vpn xconnect brief
+13,A9KCALICENTRO,10.10.66.108,ssh,10,show policy-map targets summary
+14,A9KCALICENTRO,10.10.66.108,ssh,10,show l2vpn xconnect brief
+15,A9KFLORA,10.10.66.110,ssh,10,show policy-map targets summary
+16,A9KFLORA,10.10.66.110,ssh,10,show l2vpn xconnect brief
+17,A9KERMITA,10.10.66.18,ssh,10,show policy-map targets summary
+18,A9KERMITA,10.10.66.18,ssh,10,show l2vpn xconnect brief
+19,A9KHOLGUINES,10.10.66.19,ssh,10,show policy-map targets summary
+20,A9KHOLGUINES,10.10.66.19,ssh,10,show l2vpn xconnect brief
+21,A9KESTACION,10.10.66.17,ssh,10,show policy-map targets summary
+22,A9KESTACION,10.10.66.17,ssh,10,show l2vpn xconnect brief
+23,A9KDOSQUEBRADAS,10.10.66.170,ssh,10,show policy-map targets summary
+24,A9KDOSQUEBRADAS,10.10.66.170,ssh,10,show l2vpn xconnect brief
+25,A9KDORADO,10.10.66.109,ssh,10,show cef tables summary
+26,A9KDORADO,10.10.66.109,ssh,10,show ospf 66 nei
+27,A9KARANDA,10.10.66.13,ssh,10,show cef tables summary
+28,A9KARANDA,10.10.66.13,ssh,10,show ospf 66 nei
+29,A9KCALLE94,10.10.66.14,ssh,10,show cef tables summary
+30,A9KCALLE94,10.10.66.14,ssh,10,show ospf 66 nei
+31,A9KTEUSAQUILLO,10.10.66.15,ssh,10,show cef tables summary
+32,A9KTEUSAQUILLO,10.10.66.15,ssh,10,show ospf 66 nei
+33,A9KCHICOANTIGUO,10.10.66.16,ssh,10,show cef tables summary
+34,A9KCHICOANTIGUO,10.10.66.16,ssh,10,show ospf 66 nei
+35,A9KBUCARAMANGA,10.10.66.236,ssh,10,show cef tables summary
+36,A9KBUCARAMANGA,10.10.66.236,ssh,10,show ospf 66 nei
+37,A9KCALICENTRO,10.10.66.108,ssh,10,show cef tables summary
+38,A9KCALICENTRO,10.10.66.108,ssh,10,show ospf 66 nei
+39,A9KFLORA,10.10.66.110,ssh,10,show cef tables summary
+40,A9KFLORA,10.10.66.110,ssh,10,show ospf 66 nei
+41,A9KERMITA,10.10.66.18,ssh,10,show cef tables summary
+42,A9KERMITA,10.10.66.18,ssh,10,show ospf 66 nei
+43,A9KHOLGUINES,10.10.66.19,ssh,10,show cef tables summary
+44,A9KHOLGUINES,10.10.66.19,ssh,10,show ospf 66 nei
+45,A9KESTACION,10.10.66.17,ssh,10,show cef tables summary
+46,A9KESTACION,10.10.66.17,ssh,10,show ospf 66 nei
+47,A9KDOSQUEBRADAS,10.10.66.170,ssh,10,show cef tables summary
+48,A9KDOSQUEBRADAS,10.10.66.170,ssh,10,show ospf 66 nei
+49,A9KDORADO,10.10.66.109,ssh,10,show bgp scale
+50,A9KDORADO,10.10.66.109,ssh,10,show bgp sessions
+51,A9KARANDA,10.10.66.13,ssh,10,show bgp scale
+52,A9KARANDA,10.10.66.13,ssh,10,show bgp sessions
+53,A9KCALLE94,10.10.66.14,ssh,10,show bgp scale
+54,A9KCALLE94,10.10.66.14,ssh,10,show bgp sessions
+55,A9KTEUSAQUILLO,10.10.66.15,ssh,10,show bgp scale
+56,A9KTEUSAQUILLO,10.10.66.15,ssh,10,show bgp sessions
+57,A9KCHICOANTIGUO,10.10.66.16,ssh,10,show bgp scale
+58,A9KCHICOANTIGUO,10.10.66.16,ssh,10,show bgp sessions
+59,A9KBUCARAMANGA,10.10.66.236,ssh,10,show bgp scale
+60,A9KBUCARAMANGA,10.10.66.236,ssh,10,show bgp sessions
+61,A9KCALICENTRO,10.10.66.108,ssh,10,show bgp scale
+62,A9KCALICENTRO,10.10.66.108,ssh,10,show bgp sessions
+63,A9KFLORA,10.10.66.110,ssh,10,show bgp scale
+64,A9KFLORA,10.10.66.110,ssh,10,show bgp sessions
+65,A9KERMITA,10.10.66.18,ssh,10,show bgp scale
+66,A9KERMITA,10.10.66.18,ssh,10,show bgp sessions
+67,A9KHOLGUINES,10.10.66.19,ssh,10,show bgp scale
+68,A9KHOLGUINES,10.10.66.19,ssh,10,show bgp sessions
+69,A9KESTACION,10.10.66.17,ssh,10,show bgp scale
+70,A9KESTACION,10.10.66.17,ssh,10,show bgp sessions
+71,A9KDOSQUEBRADAS,10.10.66.170,ssh,10,show bgp scale
+72,A9KDOSQUEBRADAS,10.10.66.170,ssh,10,show bgp sessions
+73,A9KDORADO,10.10.66.109,ssh,10,show ospf vrf all summary
+74,A9KDORADO,10.10.66.109,ssh,10,show route vrf all static
+75,A9KARANDA,10.10.66.13,ssh,10,show ospf vrf all summary
+76,A9KARANDA,10.10.66.13,ssh,10,show route vrf all static
+77,A9KCALLE94,10.10.66.14,ssh,10,show ospf vrf all summary
+78,A9KCALLE94,10.10.66.14,ssh,10,show route vrf all static
+79,A9KTEUSAQUILLO,10.10.66.15,ssh,10,show ospf vrf all summary
+80,A9KTEUSAQUILLO,10.10.66.15,ssh,10,show route vrf all static
+81,A9KCHICOANTIGUO,10.10.66.16,ssh,10,show ospf vrf all summary
+82,A9KCHICOANTIGUO,10.10.66.16,ssh,10,show route vrf all static
+83,A9KBUCARAMANGA,10.10.66.236,ssh,10,show ospf vrf all summary
+84,A9KBUCARAMANGA,10.10.66.236,ssh,10,show route vrf all static
+85,A9KCALICENTRO,10.10.66.108,ssh,10,show ospf vrf all summary
+86,A9KCALICENTRO,10.10.66.108,ssh,10,show route vrf all static
+87,A9KFLORA,10.10.66.110,ssh,10,show ospf vrf all summary
+88,A9KFLORA,10.10.66.110,ssh,10,show route vrf all static
+89,A9KERMITA,10.10.66.18,ssh,10,show ospf vrf all summary
+90,A9KERMITA,10.10.66.18,ssh,10,show route vrf all static
+91,A9KHOLGUINES,10.10.66.19,ssh,10,show ospf vrf all summary
+92,A9KHOLGUINES,10.10.66.19,ssh,10,show route vrf all static
+93,A9KESTACION,10.10.66.17,ssh,10,show ospf vrf all summary
+94,A9KESTACION,10.10.66.17,ssh,10,show route vrf all static
+95,A9KDOSQUEBRADAS,10.10.66.170,ssh,10,show ospf vrf all summary
+96,A9KDOSQUEBRADAS,10.10.66.170,ssh,10,show route vrf all static
+97,A9KDORADO,10.10.66.109,ssh,10,show route vrf all ipv6 summary
+98,A9KDORADO,10.10.66.109,ssh,10,show route vrf all ipv6 static
+99,A9KARANDA,10.10.66.13,ssh,10,show route vrf all ipv6 summary
+100,A9KARANDA,10.10.66.13,ssh,10,show route vrf all ipv6 static
+101,A9KCALLE94,10.10.66.14,ssh,10,show route vrf all ipv6 summary
+102,A9KCALLE94,10.10.66.14,ssh,10,show route vrf all ipv6 static
+103,A9KTEUSAQUILLO,10.10.66.15,ssh,10,show route vrf all ipv6 summary
+104,A9KTEUSAQUILLO,10.10.66.15,ssh,10,show route vrf all ipv6 static
+105,A9KCHICOANTIGUO,10.10.66.16,ssh,10,show route vrf all ipv6 summary
+106,A9KCHICOANTIGUO,10.10.66.16,ssh,10,show route vrf all ipv6 static
+107,A9KBUCARAMANGA,10.10.66.236,ssh,10,show route vrf all ipv6 summary
+108,A9KBUCARAMANGA,10.10.66.236,ssh,10,show route vrf all ipv6 static
+109,A9KCALICENTRO,10.10.66.108,ssh,10,show route vrf all ipv6 summary
+110,A9KCALICENTRO,10.10.66.108,ssh,10,show route vrf all ipv6 static
+111,A9KFLORA,10.10.66.110,ssh,10,show route vrf all ipv6 summary
+112,A9KFLORA,10.10.66.110,ssh,10,show route vrf all ipv6 static
+113,A9KERMITA,10.10.66.18,ssh,10,show route vrf all ipv6 summary
+114,A9KERMITA,10.10.66.18,ssh,10,show route vrf all ipv6 static
+115,A9KHOLGUINES,10.10.66.19,ssh,10,show route vrf all ipv6 summary
+116,A9KHOLGUINES,10.10.66.19,ssh,10,show route vrf all ipv6 static
+117,A9KESTACION,10.10.66.17,ssh,10,show route vrf all ipv6 summary
+118,A9KESTACION,10.10.66.17,ssh,10,show route vrf all ipv6 static
+119,A9KDOSQUEBRADAS,10.10.66.170,ssh,10,show route vrf all ipv6 summary
+120,A9KDOSQUEBRADAS,10.10.66.170,ssh,10,show route vrf all ipv6 static
+121,A9KDORADO,10.10.66.109,ssh,10,show route summary
+122,A9KDORADO,10.10.66.109,ssh,10,show cef tables summary
+123,A9KARANDA,10.10.66.13,ssh,10,show route summary
+124,A9KARANDA,10.10.66.13,ssh,10,show cef tables summary
+125,A9KCALLE94,10.10.66.14,ssh,10,show route summary
+126,A9KCALLE94,10.10.66.14,ssh,10,show cef tables summary
+127,A9KTEUSAQUILLO,10.10.66.15,ssh,10,show route summary
+128,A9KTEUSAQUILLO,10.10.66.15,ssh,10,show cef tables summary
+129,A9KCHICOANTIGUO,10.10.66.16,ssh,10,show route summary
+130,A9KCHICOANTIGUO,10.10.66.16,ssh,10,show cef tables summary
+131,A9KBUCARAMANGA,10.10.66.236,ssh,10,show route summary
+132,A9KBUCARAMANGA,10.10.66.236,ssh,10,show cef tables summary
+133,A9KCALICENTRO,10.10.66.108,ssh,10,show route summary
+134,A9KCALICENTRO,10.10.66.108,ssh,10,show cef tables summary
+135,A9KFLORA,10.10.66.110,ssh,10,show route summary
+136,A9KFLORA,10.10.66.110,ssh,10,show cef tables summary
+137,A9KERMITA,10.10.66.18,ssh,10,show route summary
+138,A9KERMITA,10.10.66.18,ssh,10,show cef tables summary
+139,A9KHOLGUINES,10.10.66.19,ssh,10,show route summary
+140,A9KHOLGUINES,10.10.66.19,ssh,10,show cef tables summary
+141,A9KESTACION,10.10.66.17,ssh,10,show route summary
+142,A9KESTACION,10.10.66.17,ssh,10,show cef tables summary
+143,A9KDOSQUEBRADAS,10.10.66.170,ssh,10,show route summary
+144,A9KDOSQUEBRADAS,10.10.66.170,ssh,10,show cef tables summary
+145,A9KDORADO,10.10.66.109,ssh,10,show class-map list
+146,A9KDORADO,10.10.66.109,ssh,10,show hsrp summary
+147,A9KARANDA,10.10.66.13,ssh,10,show class-map list
+148,A9KARANDA,10.10.66.13,ssh,10,show hsrp summary
+149,A9KCALLE94,10.10.66.14,ssh,10,show class-map list
+150,A9KCALLE94,10.10.66.14,ssh,10,show hsrp summary
+151,A9KTEUSAQUILLO,10.10.66.15,ssh,10,show class-map list
+152,A9KTEUSAQUILLO,10.10.66.15,ssh,10,show hsrp summary
+153,A9KCHICOANTIGUO,10.10.66.16,ssh,10,show class-map list
+154,A9KCHICOANTIGUO,10.10.66.16,ssh,10,show hsrp summary
+155,A9KBUCARAMANGA,10.10.66.236,ssh,10,show class-map list
+156,A9KBUCARAMANGA,10.10.66.236,ssh,10,show hsrp summary
+157,A9KCALICENTRO,10.10.66.108,ssh,10,show class-map list
+158,A9KCALICENTRO,10.10.66.108,ssh,10,show hsrp summary
+159,A9KFLORA,10.10.66.110,ssh,10,show class-map list
+160,A9KFLORA,10.10.66.110,ssh,10,show hsrp summary
+161,A9KERMITA,10.10.66.18,ssh,10,show class-map list
+162,A9KERMITA,10.10.66.18,ssh,10,show hsrp summary
+163,A9KHOLGUINES,10.10.66.19,ssh,10,show class-map list
+164,A9KHOLGUINES,10.10.66.19,ssh,10,show hsrp summary
+165,A9KESTACION,10.10.66.17,ssh,10,show class-map list
+166,A9KESTACION,10.10.66.17,ssh,10,show hsrp summary
+167,A9KDOSQUEBRADAS,10.10.66.170,ssh,10,show class-map list
+168,A9KDOSQUEBRADAS,10.10.66.170,ssh,10,show hsrp summary
+169,A9KDORADO,10.10.66.109,ssh,10,show version
+170,A9KDORADO,10.10.66.109,ssh,10,show inventory
+171,A9KARANDA,10.10.66.13,ssh,10,show version
+172,A9KARANDA,10.10.66.13,ssh,10,show inventory
+173,A9KCALLE94,10.10.66.14,ssh,10,show version
+174,A9KCALLE94,10.10.66.14,ssh,10,show inventory
+175,A9KTEUSAQUILLO,10.10.66.15,ssh,10,show version
+176,A9KTEUSAQUILLO,10.10.66.15,ssh,10,show inventory
+177,A9KCHICOANTIGUO,10.10.66.16,ssh,10,show version
+178,A9KCHICOANTIGUO,10.10.66.16,ssh,10,show inventory
+179,A9KBUCARAMANGA,10.10.66.236,ssh,10,show version
+180,A9KBUCARAMANGA,10.10.66.236,ssh,10,show inventory
+181,A9KCALICENTRO,10.10.66.108,ssh,10,show version
+182,A9KCALICENTRO,10.10.66.108,ssh,10,show inventory
+183,A9KFLORA,10.10.66.110,ssh,10,show version
+184,A9KFLORA,10.10.66.110,ssh,10,show inventory
+185,A9KERMITA,10.10.66.18,ssh,10,show version
+186,A9KERMITA,10.10.66.18,ssh,10,show inventory
+187,A9KHOLGUINES,10.10.66.19,ssh,10,show version
+188,A9KHOLGUINES,10.10.66.19,ssh,10,show inventory
+189,A9KESTACION,10.10.66.17,ssh,10,show version
+190,A9KESTACION,10.10.66.17,ssh,10,show inventory
+191,A9KDOSQUEBRADAS,10.10.66.170,ssh,10,show version
+192,A9KDOSQUEBRADAS,10.10.66.170,ssh,10,show inventory
+193,A9KDORADO,10.10.66.109,ssh,10,show ipv4 vrf all interface brief
+194,A9KARANDA,10.10.66.13,ssh,10,show ipv4 vrf all interface brief
+195,A9KCALLE94,10.10.66.14,ssh,10,show ipv4 vrf all interface brief
+196,A9KTEUSAQUILLO,10.10.66.15,ssh,10,show ipv4 vrf all interface brief
+197,A9KCHICOANTIGUO,10.10.66.16,ssh,10,show ipv4 vrf all interface brief
+198,A9KBUCARAMANGA,10.10.66.236,ssh,10,show ipv4 vrf all interface brief
+199,A9KCALICENTRO,10.10.66.108,ssh,10,show ipv4 vrf all interface brief
+200,A9KFLORA,10.10.66.110,ssh,10,show ipv4 vrf all interface brief
+201,A9KERMITA,10.10.66.18,ssh,10,show ipv4 vrf all interface brief
+202,A9KHOLGUINES,10.10.66.19,ssh,10,show ipv4 vrf all interface brief
+203,A9KESTACION,10.10.66.17,ssh,10,show ipv4 vrf all interface brief
+204,A9KDOSQUEBRADAS,10.10.66.170,ssh,10,show ipv4 vrf all interface brief

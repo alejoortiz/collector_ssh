@@ -100,7 +100,7 @@ class Collector:
             new_command["expect"]= row["hostname"]+"#"
             new_command["delay_factor"]= int(row["delay_factor"])
             new_command["save"]= True
-            collection_commands[index]=new_command
+            collection_commands[str(index)]=new_command
         exit_command = command.copy()
         exit_command["command"]= "exit"
         exit_command["expect"]= r'$'
